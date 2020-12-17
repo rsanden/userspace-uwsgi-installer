@@ -1,0 +1,27 @@
+pid PLACEHOLDER_PREFIX/var/run/nginx.pid;
+error_log PLACEHOLDER_PREFIX/log/nginx_PLACEHOLDER_STACKNAME_error.log;
+
+events {}
+
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+
+    client_body_temp_path PLACEHOLDER_PREFIX/tmp/client_body;
+    fastcgi_temp_path     PLACEHOLDER_PREFIX/tmp/fastcgi_temp;
+    proxy_temp_path       PLACEHOLDER_PREFIX/tmp/proxy_temp;
+    scgi_temp_path        PLACEHOLDER_PREFIX/tmp/scgi_temp;
+    uwsgi_temp_path       PLACEHOLDER_PREFIX/tmp/uwsgi_temp;
+
+    access_log PLACEHOLDER_PREFIX/log/nginx_PLACEHOLDER_STACKNAME_access.log;
+
+    server {
+        listen PLACEHOLDER_PORT;
+        server_name PLACEHOLDER_DOMAIN1;
+
+        location / {
+            include /etc/nginx/uwsgi_params;
+            uwsgi_pass unix://PLACEHOLDER_PREFIX/var/run/uwsgi.sock;
+        }
+    }
+}

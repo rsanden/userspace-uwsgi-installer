@@ -1,0 +1,11 @@
+[uwsgi]
+master = True
+socket = PLACEHOLDER_PREFIX/var/run/uwsgi.sock
+virtualenv = PLACEHOLDER_PREFIX/env
+daemonize = PLACEHOLDER_PREFIX/log/uwsgi_specter_one.log
+pidfile = PLACEHOLDER_PREFIX/var/run/uwsgi.pid
+workers = 2
+threads = 2
+
+wsgi-file = PLACEHOLDER_APPDIR1/wsgi.py
+touch-reload = PLACEHOLDER_APPDIR1/wsgi.py
